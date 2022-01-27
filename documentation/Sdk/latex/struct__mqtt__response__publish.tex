@@ -1,0 +1,61 @@
+\hypertarget{struct__mqtt__response__publish}{}\doxysection{\+\_\+mqtt\+\_\+response\+\_\+publish Struct Reference}
+\label{struct__mqtt__response__publish}\index{\_mqtt\_response\_publish@{\_mqtt\_response\_publish}}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{struct__mqtt__response__publish_a2a8426b6f83a8231ea2490633c8311d2}\label{struct__mqtt__response__publish_a2a8426b6f83a8231ea2490633c8311d2}} 
+uint8\+\_\+t \mbox{\hyperlink{struct__mqtt__response__publish_a2a8426b6f83a8231ea2490633c8311d2}{dup\+\_\+flag}}
+\begin{DoxyCompactList}\small\item\em The DUP flag. DUP flag is 0 if its the first attempt to send this publish packet. A DUP flag of 1 means that this might be a re-\/delivery of the packet. \end{DoxyCompactList}\item 
+uint8\+\_\+t \mbox{\hyperlink{struct__mqtt__response__publish_af4e81e36dbd9ccfd691f45282800037d}{qos\+\_\+level}}
+\begin{DoxyCompactList}\small\item\em The quality of service level. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct__mqtt__response__publish_a16e85a44ee8eff0240cb1c9f863a950d}\label{struct__mqtt__response__publish_a16e85a44ee8eff0240cb1c9f863a950d}} 
+uint8\+\_\+t \mbox{\hyperlink{struct__mqtt__response__publish_a16e85a44ee8eff0240cb1c9f863a950d}{retain\+\_\+flag}}
+\begin{DoxyCompactList}\small\item\em The retain flag of this publish message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct__mqtt__response__publish_a95881d3ba48a9d0af195eb489d8edad6}\label{struct__mqtt__response__publish_a95881d3ba48a9d0af195eb489d8edad6}} 
+uint16\+\_\+t \mbox{\hyperlink{struct__mqtt__response__publish_a95881d3ba48a9d0af195eb489d8edad6}{topic\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em Size of the topic name (number of characters). \end{DoxyCompactList}\item 
+const uint8\+\_\+t $\ast$ \mbox{\hyperlink{struct__mqtt__response__publish_a8e58e588047b6c68d9d77049ebe235bd}{topic}}
+\begin{DoxyCompactList}\small\item\em The topic name. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct__mqtt__response__publish_a4d36efe1f22672eba5289192ce66e819}\label{struct__mqtt__response__publish_a4d36efe1f22672eba5289192ce66e819}} 
+uint16\+\_\+t \mbox{\hyperlink{struct__mqtt__response__publish_a4d36efe1f22672eba5289192ce66e819}{packet\+\_\+id}}
+\begin{DoxyCompactList}\small\item\em The publish message\textquotesingle{}s packet ID. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct__mqtt__response__publish_a820a0c013e2f7408c3ef93b14a7bc4f2}\label{struct__mqtt__response__publish_a820a0c013e2f7408c3ef93b14a7bc4f2}} 
+const uint8\+\_\+t $\ast$ \mbox{\hyperlink{struct__mqtt__response__publish_a820a0c013e2f7408c3ef93b14a7bc4f2}{message}}
+\begin{DoxyCompactList}\small\item\em The publish message\textquotesingle{}s application message. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct__mqtt__response__publish_aee289b13f91472c3cef75bde4ea9410b}\label{struct__mqtt__response__publish_aee289b13f91472c3cef75bde4ea9410b}} 
+size\+\_\+t \mbox{\hyperlink{struct__mqtt__response__publish_aee289b13f91472c3cef75bde4ea9410b}{message\+\_\+size}}
+\begin{DoxyCompactList}\small\item\em The size of the application message in bytes. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{struct__mqtt__response__publish_af4e81e36dbd9ccfd691f45282800037d}\label{struct__mqtt__response__publish_af4e81e36dbd9ccfd691f45282800037d}} 
+\index{\_mqtt\_response\_publish@{\_mqtt\_response\_publish}!qos\_level@{qos\_level}}
+\index{qos\_level@{qos\_level}!\_mqtt\_response\_publish@{\_mqtt\_response\_publish}}
+\doxysubsubsection{\texorpdfstring{qos\_level}{qos\_level}}
+{\footnotesize\ttfamily uint8\+\_\+t \+\_\+mqtt\+\_\+response\+\_\+publish\+::qos\+\_\+level}
+
+
+
+The quality of service level. 
+
+\begin{DoxySeeAlso}{See also}
+\href{http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html\#_Table_3.11_-}{\texttt{ MQTT v3.\+1.\+1\+: QoS Definitions }} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{struct__mqtt__response__publish_a8e58e588047b6c68d9d77049ebe235bd}\label{struct__mqtt__response__publish_a8e58e588047b6c68d9d77049ebe235bd}} 
+\index{\_mqtt\_response\_publish@{\_mqtt\_response\_publish}!topic@{topic}}
+\index{topic@{topic}!\_mqtt\_response\_publish@{\_mqtt\_response\_publish}}
+\doxysubsubsection{\texorpdfstring{topic}{topic}}
+{\footnotesize\ttfamily const uint8\+\_\+t$\ast$ \+\_\+mqtt\+\_\+response\+\_\+publish\+::topic}
+
+
+
+The topic name. 
+
+\begin{DoxyNote}{Note}
+topic\+\_\+name is not null terminated. Therefore topic\+\_\+name\+\_\+size must be used to get the string length. 
+\end{DoxyNote}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+\_\+\+Project/\+\_\+\+Sequans-\/\+Livebooster/\+STM32\+Cube\+Expansion\+\_\+\+CELLULAR\+\_\+\+V5.\+2.\+0/\+Middlewares/\+Third\+\_\+\+Party/\+Live\+Objects/include/orange\+\_\+mqtt.\+h\end{DoxyCompactItemize}

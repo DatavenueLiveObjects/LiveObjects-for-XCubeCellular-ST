@@ -1,0 +1,66 @@
+\hypertarget{mqtt__client_8h}{}\doxysection{C\+:/\+\_\+\+Project/\+\_\+\+Sequans-\/\+Livebooster/\+STM32\+Cube\+Expansion\+\_\+\+CELLULAR\+\_\+\+V5.2.0/\+Middlewares/\+Third\+\_\+\+Party/\+Live\+Objects/include/mqtt\+\_\+client.h File Reference}
+\label{mqtt__client_8h}\index{C:/\_Project/\_Sequans-\/Livebooster/STM32CubeExpansion\_CELLULAR\_V5.2.0/Middlewares/Third\_Party/LiveObjects/include/mqtt\_client.h@{C:/\_Project/\_Sequans-\/Livebooster/STM32CubeExpansion\_CELLULAR\_V5.2.0/Middlewares/Third\_Party/LiveObjects/include/mqtt\_client.h}}
+
+
+Helpful methods to interface to Orange Live\+Objects Platform.  
+
+
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}dc\+\_\+common.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cmsis\+\_\+os.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}orange\+\_\+mqtt.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mqtt\+\_\+socket.\+h\char`\"{}}\newline
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mqtt__client_8h_a647d047aa605dc99f84645abf12c51bc}\label{mqtt__client_8h_a647d047aa605dc99f84645abf12c51bc}} 
+typedef enum mqtt\+\_\+error {\bfseries enum\+\_\+mqtt\+\_\+client\+\_\+error}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mqtt__client_8h_acbcb4541470d5a2b2a2995eb91e425c7}\label{mqtt__client_8h_acbcb4541470d5a2b2a2995eb91e425c7}} 
+enum {\bfseries mqtt\+\_\+error} \{ \newline
+{\bfseries MQTT\+\_\+\+CLIENT\+\_\+\+SUCCESS} = 0
+, {\bfseries MQTT\+\_\+\+CLIENT\+\_\+\+DISTANTNAME\+\_\+\+UNKNOWN}
+, {\bfseries MQTT\+\_\+\+CLIENT\+\_\+\+CREATE\+\_\+\+SOCKET\+\_\+\+FAILED}
+, {\bfseries CLIENT\+\_\+\+MQTT\+\_\+\+CONNECT\+\_\+\+SOCKET\+\_\+\+FAILED}
+, \newline
+{\bfseries CLIENT\+\_\+\+MQTT\+\_\+\+CONNECT\+\_\+\+FAILED}
+, {\bfseries MQTT\+\_\+\+CLIENT\+\_\+\+PUBLISH\+\_\+\+FAILED}
+, {\bfseries MQTT\+\_\+\+CLIENT\+\_\+\+ERROR\+\_\+\+MALFORMED\+\_\+\+RESPONSE}
+, {\bfseries MQTT\+\_\+\+CLIENT\+\_\+\+UNKNOWN\+\_\+\+ERROR}
+, \newline
+{\bfseries MQTT\+\_\+\+CLIENT\+\_\+\+COUNT\+\_\+\+ERROR}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{mqtt__client_8h_a4a435d28f07bf23b664f85da4f2d8fa9}\label{mqtt__client_8h_a4a435d28f07bf23b664f85da4f2d8fa9}} 
+\mbox{\hyperlink{structhandle__cellular}{HANDLE\+\_\+\+CELLULAR}} $\ast$ {\bfseries mqtt\+\_\+client\+\_\+init} ()
+\item 
+\mbox{\Hypertarget{mqtt__client_8h_ab6252ad26549742e11ea7b8d9f81db68}\label{mqtt__client_8h_ab6252ad26549742e11ea7b8d9f81db68}} 
+void {\bfseries mqtt\+\_\+client\+\_\+enable} ()
+\item 
+\mbox{\Hypertarget{mqtt__client_8h_abd3d1a588ecb42360f82b6c272eb57f6}\label{mqtt__client_8h_abd3d1a588ecb42360f82b6c272eb57f6}} 
+enum\+\_\+mqtt\+\_\+client\+\_\+error {\bfseries mqtt\+\_\+client\+\_\+connect} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle\+\_\+mqtt, const uint8\+\_\+t $\ast$url, uint16\+\_\+t port, const uint8\+\_\+t $\ast$user\+\_\+name, const uint8\+\_\+t $\ast$password, const uint8\+\_\+t $\ast$client\+\_\+id, enum\+\_\+tls\+\_\+type tls\+\_\+type)
+\item 
+\mbox{\Hypertarget{mqtt__client_8h_ad73e7035c5e3023531ccb845d16efc38}\label{mqtt__client_8h_ad73e7035c5e3023531ccb845d16efc38}} 
+enum\+\_\+mqtt\+\_\+client\+\_\+error {\bfseries mqtt\+\_\+client\+\_\+publish\+\_\+mqtt} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle, const uint8\+\_\+t $\ast$topic, uint8\+\_\+t $\ast$data, uint16\+\_\+t len\+\_\+data, uint8\+\_\+t qos)
+\item 
+\mbox{\Hypertarget{mqtt__client_8h_a69e9a49e2e81816314835034962cdab7}\label{mqtt__client_8h_a69e9a49e2e81816314835034962cdab7}} 
+bool {\bfseries mqtt\+\_\+client\+\_\+subscribe\+\_\+mqtt} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle\+\_\+mqtt, const uint8\+\_\+t $\ast$topic, uint8\+\_\+t qos)
+\item 
+\mbox{\Hypertarget{mqtt__client_8h_ad6b7ffaa2c14b14bc0c4ecce2b38a1bc}\label{mqtt__client_8h_ad6b7ffaa2c14b14bc0c4ecce2b38a1bc}} 
+uint16\+\_\+t {\bfseries publish\+\_\+packet} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle, const uint8\+\_\+t $\ast$topic, uint8\+\_\+t $\ast$data, uint16\+\_\+t len\+\_\+data, uint8\+\_\+t qos)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helpful methods to interface to Orange Live\+Objects Platform. 
+
+This class contains all the necessary methods to be able to interact easily with MQTT platform 

@@ -1,0 +1,624 @@
+\hypertarget{mqtt__liveobjects_8h}{}\doxysection{C\+:/\+\_\+\+Project/\+\_\+\+Sequans-\/\+Livebooster/\+STM32\+Cube\+Expansion\+\_\+\+CELLULAR\+\_\+\+V5.2.0/\+Middlewares/\+Third\+\_\+\+Party/\+Live\+Objects/include/mqtt\+\_\+liveobjects.h File Reference}
+\label{mqtt__liveobjects_8h}\index{C:/\_Project/\_Sequans-\/Livebooster/STM32CubeExpansion\_CELLULAR\_V5.2.0/Middlewares/Third\_Party/LiveObjects/include/mqtt\_liveobjects.h@{C:/\_Project/\_Sequans-\/Livebooster/STM32CubeExpansion\_CELLULAR\_V5.2.0/Middlewares/Third\_Party/LiveObjects/include/mqtt\_liveobjects.h}}
+
+
+Helpful methods to interface to Orange Live\+Objects Platform.  
+
+
+{\ttfamily \#include \char`\"{}json.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}mqtt\+\_\+client.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}liveobjects\+\_\+conf.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}orange\+\_\+mqtt.\+h\char`\"{}}\newline
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef enum \mbox{\hyperlink{mqtt__liveobjects_8h_a1a6b6fb557d8d37d59700faf4e4c9167}{mode}} \mbox{\hyperlink{mqtt__liveobjects_8h_abcf27cc76fe86478f1d9022b0be41c1c}{enum\+\_\+mode}}
+\begin{DoxyCompactList}\small\item\em Live Objects has several application behaviors depending on the connection mode (user name) described in the following section. Currently Live objects supports 3 connection modes. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{mqtt__liveobjects_8h_ab73e2b4bf496e99f43d93018be986457}{publish\+\_\+topic}} \mbox{\hyperlink{mqtt__liveobjects_8h_a1daf2d73485c665b6021b7630dfcd7a1}{enum\+\_\+publish\+\_\+topic}}
+\begin{DoxyCompactList}\small\item\em List of publish topic managed by Live\+Objects. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{mqtt__liveobjects_8h_adecb57c4ee228ab41388cca7894a2e52}{subscribe\+\_\+topic}} \mbox{\hyperlink{mqtt__liveobjects_8h_a0fe2146e7541d1e18d2032e9d66a4792}{enum\+\_\+subscribe\+\_\+topic}}
+\begin{DoxyCompactList}\small\item\em List of subscribe topic managed by Live\+Objects. \end{DoxyCompactList}\item 
+typedef enum \mbox{\hyperlink{mqtt__liveobjects_8h_a4ec732b1deba52919051e8096715afa3}{update\+\_\+response}} \mbox{\hyperlink{mqtt__liveobjects_8h_a51fc37105e42b6d95116514e2b0fabcc}{enum\+\_\+update\+\_\+response}}
+\begin{DoxyCompactList}\small\item\em List of status of update response (resource management) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{mqtt__liveobjects_8h_a1a6b6fb557d8d37d59700faf4e4c9167}{mode}} \{ \newline
+{\bfseries DEVICE\+\_\+\+MODE} = 0
+, {\bfseries CONNECTOR\+\_\+\+MODE}
+, {\bfseries APPLICATION\+\_\+\+MODE}
+, {\bfseries BRIDGE\+\_\+\+MODE}
+, \newline
+{\bfseries PAYLOAD\+\_\+\+BRIDGE\+\_\+\+MODE}
+, {\bfseries COUNT\+\_\+\+MODE}
+ \}
+\begin{DoxyCompactList}\small\item\em Live Objects has several application behaviors depending on the connection mode (user name) described in the following section. Currently Live objects supports 3 connection modes. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{mqtt__liveobjects_8h_ab73e2b4bf496e99f43d93018be986457}{publish\+\_\+topic}} \{ \newline
+{\bfseries TOPIC\+\_\+\+DATA} = 0
+, {\bfseries TOPIC\+\_\+\+DATA\+\_\+\+BINARY}
+, {\bfseries CMD\+\_\+\+RESULT}
+, {\bfseries CONFIG\+\_\+\+TOPIC}
+, \newline
+{\bfseries RSC\+\_\+\+TOPIC}
+, {\bfseries RSC\+\_\+\+UDP\+\_\+\+RES\+\_\+\+TOPIC}
+, {\bfseries RSC\+\_\+\+UDP\+\_\+\+ERR\+\_\+\+TOPIC}
+, {\bfseries COUNT\+\_\+\+PUBLISH\+\_\+\+TOPIC}
+ \}
+\begin{DoxyCompactList}\small\item\em List of publish topic managed by Live\+Objects. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{mqtt__liveobjects_8h_adecb57c4ee228ab41388cca7894a2e52}{subscribe\+\_\+topic}} \{ {\bfseries CMD\+\_\+\+TOPIC} = 0
+, {\bfseries CONFIG\+\_\+\+UDP\+\_\+\+TOPIC}
+, {\bfseries RSC\+\_\+\+UDP\+\_\+\+TOPIC}
+, {\bfseries COUNT\+\_\+\+SUBSCRIBE\+\_\+\+TOPIC}
+ \}
+\begin{DoxyCompactList}\small\item\em List of subscribe topic managed by Live\+Objects. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{mqtt__liveobjects_8h_a4ec732b1deba52919051e8096715afa3}{update\+\_\+response}} \{ \newline
+{\bfseries OK}
+, {\bfseries UNKNOWN\+\_\+\+RESOURCE} = 0
+, {\bfseries WRONG\+\_\+\+SOURCE\+\_\+\+VERSION}
+, {\bfseries WRONG\+\_\+\+TARGET\+\_\+\+VERSION}
+, \newline
+{\bfseries INVALID\+\_\+\+RESOURCE}
+, {\bfseries NOT\+\_\+\+AUTHORIZED}
+, {\bfseries INTERNAL\+\_\+\+ERROR}
+, {\bfseries COUNT\+\_\+\+UPDATE\+\_\+\+RESPONSES}
+ \}
+\begin{DoxyCompactList}\small\item\em List of status of update response (resource management) \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$ \mbox{\hyperlink{mqtt__liveobjects_8h_ac539431ec2ba9164e681a6b4951284a9}{lo\+\_\+create}} ()
+\begin{DoxyCompactList}\small\item\em Create and initializing instance of Live\+Objects connection. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mqtt__liveobjects_8h_a125068cdd5c2bf9c1c9f1d95db6560f6}{lo\+\_\+disconnect}} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle)
+\begin{DoxyCompactList}\small\item\em disconnect instance of Live\+Objects connection \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{mqtt__liveobjects_8h_a74f48fff6186bf73f33b9c2a49506ae7}{lo\+\_\+set\+\_\+default\+\_\+config}} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle)
+\begin{DoxyCompactList}\small\item\em Setting the mandatory parameters to connect to Live\+Objects. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{mqtt__liveobjects_8h_a0eedf2a35e2f237a3e2a2480e6723a6a}{lo\+\_\+set\+\_\+config}} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle, uint8\+\_\+t $\ast$server\+\_\+name, uint16\+\_\+t port, uint8\+\_\+t $\ast$user\+\_\+name, uint8\+\_\+t $\ast$password, uint8\+\_\+t $\ast$client\+\_\+id, uint8\+\_\+t $\ast$stream\+\_\+id)
+\begin{DoxyCompactList}\small\item\em Setting the mandatory parameters to connect to Live\+Objects. \end{DoxyCompactList}\item 
+enum\+\_\+mqtt\+\_\+client\+\_\+error \mbox{\hyperlink{mqtt__liveobjects_8h_a4d282cddc7f095fc0ab05381cb4cb65b}{lo\+\_\+connect\+\_\+mqtt}} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle)
+\begin{DoxyCompactList}\small\item\em Connect to Live\+Objects (no secure mode) \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{mqtt__liveobjects_8h_a36887cde4f1a982068e1c1eb670cf3bf}{lo\+\_\+is\+\_\+connected}} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle)
+\begin{DoxyCompactList}\small\item\em Check if MQTT connection is available. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mqtt__liveobjects_8h_a681bf04da91924899ad3ed26469b8066}{lo\+\_\+set\+\_\+command\+\_\+callback}} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle, void($\ast$lo\+\_\+publish\+\_\+response\+\_\+callback)(int64\+\_\+t cid, const char $\ast$req, const json\+\_\+value $\ast$arg))
+\begin{DoxyCompactList}\small\item\em Set the procedure command callback (no secure mode) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mqtt__liveobjects_8h_a7ab42f9f88534dd58e5b9fa531b2c0ee}{lo\+\_\+set\+\_\+config\+\_\+udp\+\_\+callback}} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle, void($\ast$lo\+\_\+publish\+\_\+response\+\_\+callback)(int64\+\_\+t cid, const char $\ast$req, const json\+\_\+value $\ast$arg))
+\begin{DoxyCompactList}\small\item\em Set the procedure config udp callback (no secure mode) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mqtt__liveobjects_8h_ad9cf86915f441f80fc2fa4b396578851}{lo\+\_\+set\+\_\+rsc\+\_\+udp\+\_\+callback}} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle, void($\ast$lo\+\_\+publish\+\_\+response\+\_\+callback)(int64\+\_\+t cid, const char $\ast$req, const json\+\_\+value $\ast$arg))
+\begin{DoxyCompactList}\small\item\em Set the procedure rsc udp callback (no secure mode) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mqtt__liveobjects_8h_ae7dc71df3395f402b943ad3879637684}{lo\+\_\+set\+\_\+subscribe\+\_\+callback}} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle, void($\ast$lo\+\_\+publish\+\_\+response\+\_\+callback)(\mbox{\hyperlink{struct__mqtt__response__publish}{mqtt\+\_\+response\+\_\+publish}} $\ast$p\+\_\+published))
+\begin{DoxyCompactList}\small\item\em Set the procedure generic subscribe callback (no secure mode) \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mqtt__liveobjects_8h_a045500527f1765814d443a8537384580}{lo\+\_\+subscribe}} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle, const uint8\+\_\+t $\ast$topic)
+\begin{DoxyCompactList}\small\item\em Subscribe topic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mqtt__liveobjects_8h_aa15c30ec5f96d856311737f91a72e1de}{lo\+\_\+command\+\_\+subscribe}} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle)
+\begin{DoxyCompactList}\small\item\em Subscribe command topic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mqtt__liveobjects_8h_a668c0d57abcc811a024db7d27fe092dc}{lo\+\_\+config\+\_\+update\+\_\+subscribe}} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle)
+\begin{DoxyCompactList}\small\item\em Subscribe configuration management topic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mqtt__liveobjects_8h_ab20f61f4315b9e86cd46e2c7033a8f51}{lo\+\_\+resource\+\_\+update\+\_\+subscribe}} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle)
+\begin{DoxyCompactList}\small\item\em Subscribe resource management topic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mqtt__liveobjects_8h_a384c6128a68458d350909d9c0d1d4602}{lo\+\_\+unsubscribe}} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle, char $\ast$topic)
+\begin{DoxyCompactList}\small\item\em Unsubscribe topic. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mqtt__liveobjects_8h_ae56dfaccfa998a224d67cadf703cb2f2}{lo\+\_\+command\+\_\+unsubscribe}} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle)
+\begin{DoxyCompactList}\small\item\em Unsubscribe command topic. \end{DoxyCompactList}\item 
+enum\+\_\+mqtt\+\_\+client\+\_\+error \mbox{\hyperlink{mqtt__liveobjects_8h_a99b13f01a00d1ef6c429169e6d327f87}{lo\+\_\+publish\+\_\+data}} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle, const char $\ast$data)
+\begin{DoxyCompactList}\small\item\em Publish data values. \end{DoxyCompactList}\item 
+enum\+\_\+mqtt\+\_\+client\+\_\+error \mbox{\hyperlink{mqtt__liveobjects_8h_a0925b38fe3077cd9cec2c056b2b17cf5}{lo\+\_\+publish\+\_\+ack\+\_\+command}} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle, int64\+\_\+t cid, char $\ast$response)
+\begin{DoxyCompactList}\small\item\em Publish command responses. \end{DoxyCompactList}\item 
+enum\+\_\+mqtt\+\_\+client\+\_\+error \mbox{\hyperlink{mqtt__liveobjects_8h_a6c0b06a748a90f32d2f324bd65f36075}{lo\+\_\+publish\+\_\+ack\+\_\+config\+\_\+update}} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle, int64\+\_\+t cid, \mbox{\hyperlink{mqtt__liveobjects_8h_a51fc37105e42b6d95116514e2b0fabcc}{enum\+\_\+update\+\_\+response}} response)
+\begin{DoxyCompactList}\small\item\em Publish command responses. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{mqtt__liveobjects_8h_ac218ffe1468e3ab0e261c3a25f58fabd}{lo\+\_\+synchronize}} (\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$handle)
+\begin{DoxyCompactList}\small\item\em Synchronize MQTT connection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Helpful methods to interface to Orange Live\+Objects Platform. 
+
+This class contains all the necessary methods to be able to interact easily with the Orange Live\+Objects IoT platform 
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_abcf27cc76fe86478f1d9022b0be41c1c}\label{mqtt__liveobjects_8h_abcf27cc76fe86478f1d9022b0be41c1c}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!enum\_mode@{enum\_mode}}
+\index{enum\_mode@{enum\_mode}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{enum\_mode}{enum\_mode}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{mqtt__liveobjects_8h_a1a6b6fb557d8d37d59700faf4e4c9167}{mode}} \mbox{\hyperlink{mqtt__liveobjects_8h_abcf27cc76fe86478f1d9022b0be41c1c}{enum\+\_\+mode}}}
+
+
+
+Live Objects has several application behaviors depending on the connection mode (user name) described in the following section. Currently Live objects supports 3 connection modes. 
+
+Each of these values ​​is used to define the connection mode with Live\+Objects \char`\"{}\+Device\char`\"{} mode used to communicate with a native MQTT device. \char`\"{}\+External connector\char`\"{} mode is an API that allows communication with devices using other protocols not supported by Live Objects. To communicate with Live Objects, these devices are connected with a backend itself connected in \char`\"{}external connector\char`\"{} mode that can translate requests and responses (from / to) MQTT. \char`\"{}\+Application\char`\"{} mode with this mode, Live Objects provides an application mode to allow business applications to use the MQTT API. \char`\"{}\+Bridge\char`\"{} and \char`\"{}\+Payload Bridge\char`\"{} are deprecated \mbox{\Hypertarget{mqtt__liveobjects_8h_a1daf2d73485c665b6021b7630dfcd7a1}\label{mqtt__liveobjects_8h_a1daf2d73485c665b6021b7630dfcd7a1}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!enum\_publish\_topic@{enum\_publish\_topic}}
+\index{enum\_publish\_topic@{enum\_publish\_topic}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{enum\_publish\_topic}{enum\_publish\_topic}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{mqtt__liveobjects_8h_ab73e2b4bf496e99f43d93018be986457}{publish\+\_\+topic}} \mbox{\hyperlink{mqtt__liveobjects_8h_a1daf2d73485c665b6021b7630dfcd7a1}{enum\+\_\+publish\+\_\+topic}}}
+
+
+
+List of publish topic managed by Live\+Objects. 
+
+There are 4 types of publish topic\+:
+\begin{DoxyItemize}
+\item Data message publication . TOPIC\+\_\+\+DATA\+: to publish a JSON data message . TOPIC\+\_\+\+DATA\+\_\+\+BINARY\+: to publish a binary data message and use a decoder associated to the device’s interface
+\end{DoxyItemize}
+
+Command management . CMD\+\_\+\+RESULT \+: to return command responses
+\begin{DoxyItemize}
+\item Configuration management . CONFIG\+\_\+\+TOPIC\+: to announce the current configuration or respond to a config update request
+\item Resource management . RSC\+\_\+\+TOPIC\+: to announce the current resource versions . RSC\+\_\+\+UDP\+\_\+\+RES\+\_\+\+TOPIC\+: to receive resource update requests and announce remote resource update compatibility . RSC\+\_\+\+UDP\+\_\+\+ERR\+\_\+\+TOPIC\+: to respond to resource update requests 
+\end{DoxyItemize}\mbox{\Hypertarget{mqtt__liveobjects_8h_a0fe2146e7541d1e18d2032e9d66a4792}\label{mqtt__liveobjects_8h_a0fe2146e7541d1e18d2032e9d66a4792}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!enum\_subscribe\_topic@{enum\_subscribe\_topic}}
+\index{enum\_subscribe\_topic@{enum\_subscribe\_topic}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{enum\_subscribe\_topic}{enum\_subscribe\_topic}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{mqtt__liveobjects_8h_adecb57c4ee228ab41388cca7894a2e52}{subscribe\+\_\+topic}} \mbox{\hyperlink{mqtt__liveobjects_8h_a0fe2146e7541d1e18d2032e9d66a4792}{enum\+\_\+subscribe\+\_\+topic}}}
+
+
+
+List of subscribe topic managed by Live\+Objects. 
+
+There are 3 types of subscribe topic\+:
+\begin{DoxyItemize}
+\item Command management . CMD\+\_\+\+TOPIC \+: to receive commands and announce remote command compatibility
+\item Configuration management . CONFIG\+\_\+\+UDP\+\_\+\+TOPIC\+: to receive configuration update requests and announce remote configuration update compatibility
+\item Resource management . RSC\+\_\+\+UDP\+\_\+\+TOPIC\+: to receive resource update requests and announce remote resource update compatibility 
+\end{DoxyItemize}\mbox{\Hypertarget{mqtt__liveobjects_8h_a51fc37105e42b6d95116514e2b0fabcc}\label{mqtt__liveobjects_8h_a51fc37105e42b6d95116514e2b0fabcc}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!enum\_update\_response@{enum\_update\_response}}
+\index{enum\_update\_response@{enum\_update\_response}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{enum\_update\_response}{enum\_update\_response}}
+{\footnotesize\ttfamily typedef enum \mbox{\hyperlink{mqtt__liveobjects_8h_a4ec732b1deba52919051e8096715afa3}{update\+\_\+response}} \mbox{\hyperlink{mqtt__liveobjects_8h_a51fc37105e42b6d95116514e2b0fabcc}{enum\+\_\+update\+\_\+response}}}
+
+
+
+List of status of update response (resource management) 
+
+There are 7 status\+:
+\begin{DoxyItemize}
+\item OK \+: the update is accepted and will start,
+\end{DoxyItemize}
+
+UNKNOWN\+\_\+\+RESOURCE \+: the update is refused, because the resource (identifier) is unsupported by the device
+\begin{DoxyItemize}
+\item WRONG\+\_\+\+SOURCE\+\_\+\+VERSION \+: the device is no longer in the \char`\"{}current\char`\"{} (old) resource version specified in the resource update request
+\item WRONG\+\_\+\+TARGET\+\_\+\+VERSION \+: the device doesn’t support the \char`\"{}target\char`\"{} (new) resource version specified in the resource update request
+\item INVALID\+\_\+\+RESOURCE \+: the requested new resource version has incorrect version format or metadata
+\item NOT\+\_\+\+AUTHORIZED \+: the device refuses to update the targeted resource (ex\+: bad timing, \char`\"{}read-\/only\char`\"{} resource, etc.)
+\item INTERNAL\+\_\+\+ERROR \+: an error occurred on the device, preventing for the requested resource update 
+\end{DoxyItemize}
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_a1a6b6fb557d8d37d59700faf4e4c9167}\label{mqtt__liveobjects_8h_a1a6b6fb557d8d37d59700faf4e4c9167}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!mode@{mode}}
+\index{mode@{mode}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{mode}{mode}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{mqtt__liveobjects_8h_a1a6b6fb557d8d37d59700faf4e4c9167}{mode}}}
+
+
+
+Live Objects has several application behaviors depending on the connection mode (user name) described in the following section. Currently Live objects supports 3 connection modes. 
+
+Each of these values ​​is used to define the connection mode with Live\+Objects \char`\"{}\+Device\char`\"{} mode used to communicate with a native MQTT device. \char`\"{}\+External connector\char`\"{} mode is an API that allows communication with devices using other protocols not supported by Live Objects. To communicate with Live Objects, these devices are connected with a backend itself connected in \char`\"{}external connector\char`\"{} mode that can translate requests and responses (from / to) MQTT. \char`\"{}\+Application\char`\"{} mode with this mode, Live Objects provides an application mode to allow business applications to use the MQTT API. \char`\"{}\+Bridge\char`\"{} and \char`\"{}\+Payload Bridge\char`\"{} are deprecated \mbox{\Hypertarget{mqtt__liveobjects_8h_ab73e2b4bf496e99f43d93018be986457}\label{mqtt__liveobjects_8h_ab73e2b4bf496e99f43d93018be986457}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!publish\_topic@{publish\_topic}}
+\index{publish\_topic@{publish\_topic}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{publish\_topic}{publish\_topic}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{mqtt__liveobjects_8h_ab73e2b4bf496e99f43d93018be986457}{publish\+\_\+topic}}}
+
+
+
+List of publish topic managed by Live\+Objects. 
+
+There are 4 types of publish topic\+:
+\begin{DoxyItemize}
+\item Data message publication . TOPIC\+\_\+\+DATA\+: to publish a JSON data message . TOPIC\+\_\+\+DATA\+\_\+\+BINARY\+: to publish a binary data message and use a decoder associated to the device’s interface
+\end{DoxyItemize}
+
+Command management . CMD\+\_\+\+RESULT \+: to return command responses
+\begin{DoxyItemize}
+\item Configuration management . CONFIG\+\_\+\+TOPIC\+: to announce the current configuration or respond to a config update request
+\item Resource management . RSC\+\_\+\+TOPIC\+: to announce the current resource versions . RSC\+\_\+\+UDP\+\_\+\+RES\+\_\+\+TOPIC\+: to receive resource update requests and announce remote resource update compatibility . RSC\+\_\+\+UDP\+\_\+\+ERR\+\_\+\+TOPIC\+: to respond to resource update requests 
+\end{DoxyItemize}\mbox{\Hypertarget{mqtt__liveobjects_8h_adecb57c4ee228ab41388cca7894a2e52}\label{mqtt__liveobjects_8h_adecb57c4ee228ab41388cca7894a2e52}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!subscribe\_topic@{subscribe\_topic}}
+\index{subscribe\_topic@{subscribe\_topic}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{subscribe\_topic}{subscribe\_topic}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{mqtt__liveobjects_8h_adecb57c4ee228ab41388cca7894a2e52}{subscribe\+\_\+topic}}}
+
+
+
+List of subscribe topic managed by Live\+Objects. 
+
+There are 3 types of subscribe topic\+:
+\begin{DoxyItemize}
+\item Command management . CMD\+\_\+\+TOPIC \+: to receive commands and announce remote command compatibility
+\item Configuration management . CONFIG\+\_\+\+UDP\+\_\+\+TOPIC\+: to receive configuration update requests and announce remote configuration update compatibility
+\item Resource management . RSC\+\_\+\+UDP\+\_\+\+TOPIC\+: to receive resource update requests and announce remote resource update compatibility 
+\end{DoxyItemize}\mbox{\Hypertarget{mqtt__liveobjects_8h_a4ec732b1deba52919051e8096715afa3}\label{mqtt__liveobjects_8h_a4ec732b1deba52919051e8096715afa3}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!update\_response@{update\_response}}
+\index{update\_response@{update\_response}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{update\_response}{update\_response}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{mqtt__liveobjects_8h_a4ec732b1deba52919051e8096715afa3}{update\+\_\+response}}}
+
+
+
+List of status of update response (resource management) 
+
+There are 7 status\+:
+\begin{DoxyItemize}
+\item OK \+: the update is accepted and will start,
+\end{DoxyItemize}
+
+UNKNOWN\+\_\+\+RESOURCE \+: the update is refused, because the resource (identifier) is unsupported by the device
+\begin{DoxyItemize}
+\item WRONG\+\_\+\+SOURCE\+\_\+\+VERSION \+: the device is no longer in the \char`\"{}current\char`\"{} (old) resource version specified in the resource update request
+\item WRONG\+\_\+\+TARGET\+\_\+\+VERSION \+: the device doesn’t support the \char`\"{}target\char`\"{} (new) resource version specified in the resource update request
+\item INVALID\+\_\+\+RESOURCE \+: the requested new resource version has incorrect version format or metadata
+\item NOT\+\_\+\+AUTHORIZED \+: the device refuses to update the targeted resource (ex\+: bad timing, \char`\"{}read-\/only\char`\"{} resource, etc.)
+\item INTERNAL\+\_\+\+ERROR \+: an error occurred on the device, preventing for the requested resource update 
+\end{DoxyItemize}
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_aa15c30ec5f96d856311737f91a72e1de}\label{mqtt__liveobjects_8h_aa15c30ec5f96d856311737f91a72e1de}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_command\_subscribe@{lo\_command\_subscribe}}
+\index{lo\_command\_subscribe@{lo\_command\_subscribe}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_command\_subscribe()}{lo\_command\_subscribe()}}
+{\footnotesize\ttfamily void lo\+\_\+command\+\_\+subscribe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+
+
+Subscribe command topic. 
+
+This function subscribe \char`\"{}dev/cmd\char`\"{} topic to receive commands and announce remote command compatibility 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_ae56dfaccfa998a224d67cadf703cb2f2}\label{mqtt__liveobjects_8h_ae56dfaccfa998a224d67cadf703cb2f2}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_command\_unsubscribe@{lo\_command\_unsubscribe}}
+\index{lo\_command\_unsubscribe@{lo\_command\_unsubscribe}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_command\_unsubscribe()}{lo\_command\_unsubscribe()}}
+{\footnotesize\ttfamily void lo\+\_\+command\+\_\+unsubscribe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+
+
+Unsubscribe command topic. 
+
+This function unsubscribe \char`\"{}dev/cmd\char`\"{} topic 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_a668c0d57abcc811a024db7d27fe092dc}\label{mqtt__liveobjects_8h_a668c0d57abcc811a024db7d27fe092dc}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_config\_update\_subscribe@{lo\_config\_update\_subscribe}}
+\index{lo\_config\_update\_subscribe@{lo\_config\_update\_subscribe}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_config\_update\_subscribe()}{lo\_config\_update\_subscribe()}}
+{\footnotesize\ttfamily void lo\+\_\+config\+\_\+update\+\_\+subscribe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+
+
+Subscribe configuration management topic. 
+
+Unsubscribe configuration management topic.
+
+This function subscribe \char`\"{}dev/cfg/upd\char`\"{} topic to receive configuration update requests and announce remote configuration update compatibility 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$\\
+\hline
+\end{DoxyParams}
+This function subscribe \char`\"{}dev/cfg/upd\char`\"{} topic 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_a4d282cddc7f095fc0ab05381cb4cb65b}\label{mqtt__liveobjects_8h_a4d282cddc7f095fc0ab05381cb4cb65b}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_connect\_mqtt@{lo\_connect\_mqtt}}
+\index{lo\_connect\_mqtt@{lo\_connect\_mqtt}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_connect\_mqtt()}{lo\_connect\_mqtt()}}
+{\footnotesize\ttfamily enum\+\_\+mqtt\+\_\+client\+\_\+error lo\+\_\+connect\+\_\+mqtt (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+
+
+Connect to Live\+Objects (no secure mode) 
+
+This function connect to Live\+Objects 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+enum value, MQTT\+\_\+\+CLIENT\+\_\+\+SUCCESS if everything is ok, other if there was a problem during the execution. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_ac539431ec2ba9164e681a6b4951284a9}\label{mqtt__liveobjects_8h_ac539431ec2ba9164e681a6b4951284a9}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_create@{lo\_create}}
+\index{lo\_create@{lo\_create}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_create()}{lo\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}}$\ast$ lo\+\_\+create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Create and initializing instance of Live\+Objects connection. 
+
+Used to instantiate a new Live\+Objects handle \begin{DoxyReturn}{Returns}
+Pointer of the instance handle 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_a125068cdd5c2bf9c1c9f1d95db6560f6}\label{mqtt__liveobjects_8h_a125068cdd5c2bf9c1c9f1d95db6560f6}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_disconnect@{lo\_disconnect}}
+\index{lo\_disconnect@{lo\_disconnect}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_disconnect()}{lo\_disconnect()}}
+{\footnotesize\ttfamily void lo\+\_\+disconnect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+
+
+disconnect instance of Live\+Objects connection 
+
+Used to disconnect an existing Live\+Objects connexion \begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_a36887cde4f1a982068e1c1eb670cf3bf}\label{mqtt__liveobjects_8h_a36887cde4f1a982068e1c1eb670cf3bf}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_is\_connected@{lo\_is\_connected}}
+\index{lo\_is\_connected@{lo\_is\_connected}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_is\_connected()}{lo\_is\_connected()}}
+{\footnotesize\ttfamily bool lo\+\_\+is\+\_\+connected (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+
+
+Check if MQTT connection is available. 
+
+This function return the state of connection 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_a0925b38fe3077cd9cec2c056b2b17cf5}\label{mqtt__liveobjects_8h_a0925b38fe3077cd9cec2c056b2b17cf5}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_publish\_ack\_command@{lo\_publish\_ack\_command}}
+\index{lo\_publish\_ack\_command@{lo\_publish\_ack\_command}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_publish\_ack\_command()}{lo\_publish\_ack\_command()}}
+{\footnotesize\ttfamily enum\+\_\+mqtt\+\_\+client\+\_\+error lo\+\_\+publish\+\_\+ack\+\_\+command (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$}]{handle,  }\item[{int64\+\_\+t}]{cid,  }\item[{char $\ast$}]{response }\end{DoxyParamCaption})}
+
+
+
+Publish command responses. 
+
+This function publish to Live\+Objects the json command responses. (see for more details \href{https://liveobjects.orange-business.com/doc/html/lo_manual_v2.html\#MQTT_DEV_CMD}{\texttt{ https\+://liveobjects.\+orange-\/business.\+com/doc/html/lo\+\_\+manual\+\_\+v2.\+html\#\+MQTT\+\_\+\+DEV\+\_\+\+CMD}}) 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$ \\
+\hline
+{\em cid} & CID send by receive command \\
+\hline
+{\em response} & Json Serialized arg values (example \+: \{"{}done"{}\+: true\} {\bfseries{16}} char$\ast$ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_a6c0b06a748a90f32d2f324bd65f36075}\label{mqtt__liveobjects_8h_a6c0b06a748a90f32d2f324bd65f36075}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_publish\_ack\_config\_update@{lo\_publish\_ack\_config\_update}}
+\index{lo\_publish\_ack\_config\_update@{lo\_publish\_ack\_config\_update}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_publish\_ack\_config\_update()}{lo\_publish\_ack\_config\_update()}}
+{\footnotesize\ttfamily enum\+\_\+mqtt\+\_\+client\+\_\+error lo\+\_\+publish\+\_\+ack\+\_\+config\+\_\+update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$}]{handle,  }\item[{int64\+\_\+t}]{cid,  }\item[{\mbox{\hyperlink{mqtt__liveobjects_8h_a51fc37105e42b6d95116514e2b0fabcc}{enum\+\_\+update\+\_\+response}}}]{response }\end{DoxyParamCaption})}
+
+
+
+Publish command responses. 
+
+This function publish to Live\+Objects the json resource update response. (see for more details \href{https://liveobjects.orange-business.com/doc/html/lo_manual_v2.html\#MQTT_DEV_CMD}{\texttt{ https\+://liveobjects.\+orange-\/business.\+com/doc/html/lo\+\_\+manual\+\_\+v2.\+html\#\+MQTT\+\_\+\+DEV\+\_\+\+CMD}}) 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$ \\
+\hline
+{\em cid} & CID send by receive command {\bfseries{16}} int64\+\_\+t \\
+\hline
+{\em enum\+\_\+update\+\_\+response} & response status {\bfseries{16}} enum\+\_\+update\+\_\+response \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_a99b13f01a00d1ef6c429169e6d327f87}\label{mqtt__liveobjects_8h_a99b13f01a00d1ef6c429169e6d327f87}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_publish\_data@{lo\_publish\_data}}
+\index{lo\_publish\_data@{lo\_publish\_data}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_publish\_data()}{lo\_publish\_data()}}
+{\footnotesize\ttfamily enum\+\_\+mqtt\+\_\+client\+\_\+error lo\+\_\+publish\+\_\+data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$}]{handle,  }\item[{const char $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Publish data values. 
+
+This function publish to Live\+Objects the json values with Data enrichment logic. (see for more details \href{https://liveobjects.orange-business.com/doc/html/lo_manual_v2.html\#MQTT_DEV_DATA}{\texttt{ https\+://liveobjects.\+orange-\/business.\+com/doc/html/lo\+\_\+manual\+\_\+v2.\+html\#\+MQTT\+\_\+\+DEV\+\_\+\+DATA}}) 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$ \\
+\hline
+{\em const} & char$\ast$ Json Serialized values (example \+: \{\char`\"{}tag1\char`\"{}\+:\char`\"{}val1\char`\"{},\char`\"{}tag2\char`\"{}\+:\char`\"{}val2\char`\"{},\char`\"{}tag3\char`\"{}\+:\char`\"{}val3\char`\"{}\}"{} {\bfseries{16}} char$\ast$ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_ab20f61f4315b9e86cd46e2c7033a8f51}\label{mqtt__liveobjects_8h_ab20f61f4315b9e86cd46e2c7033a8f51}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_resource\_update\_subscribe@{lo\_resource\_update\_subscribe}}
+\index{lo\_resource\_update\_subscribe@{lo\_resource\_update\_subscribe}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_resource\_update\_subscribe()}{lo\_resource\_update\_subscribe()}}
+{\footnotesize\ttfamily void lo\+\_\+resource\+\_\+update\+\_\+subscribe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+
+
+Subscribe resource management topic. 
+
+Unsubscribe resource management topic.
+
+This function subscribe \char`\"{}dev/rsc/upd\char`\"{} topic to receive resource update requests and announce remote resource update compatibility 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$\\
+\hline
+\end{DoxyParams}
+This function subscribe \char`\"{}dev/rsc/upd\char`\"{} topic 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_a681bf04da91924899ad3ed26469b8066}\label{mqtt__liveobjects_8h_a681bf04da91924899ad3ed26469b8066}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_set\_command\_callback@{lo\_set\_command\_callback}}
+\index{lo\_set\_command\_callback@{lo\_set\_command\_callback}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_set\_command\_callback()}{lo\_set\_command\_callback()}}
+{\footnotesize\ttfamily void lo\+\_\+set\+\_\+command\+\_\+callback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$}]{handle,  }\item[{void($\ast$)(int64\+\_\+t cid, const char $\ast$req, const json\+\_\+value $\ast$arg)}]{lo\+\_\+publish\+\_\+response\+\_\+callback }\end{DoxyParamCaption})}
+
+
+
+Set the procedure command callback (no secure mode) 
+
+This function define the name of the callback which is called when an request is received 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$ \\
+\hline
+{\em Pointer} & of the callback procedure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_a0eedf2a35e2f237a3e2a2480e6723a6a}\label{mqtt__liveobjects_8h_a0eedf2a35e2f237a3e2a2480e6723a6a}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_set\_config@{lo\_set\_config}}
+\index{lo\_set\_config@{lo\_set\_config}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_set\_config()}{lo\_set\_config()}}
+{\footnotesize\ttfamily bool lo\+\_\+set\+\_\+config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$}]{handle,  }\item[{uint8\+\_\+t $\ast$}]{server\+\_\+name,  }\item[{uint16\+\_\+t}]{port,  }\item[{uint8\+\_\+t $\ast$}]{user\+\_\+name,  }\item[{uint8\+\_\+t $\ast$}]{password,  }\item[{uint8\+\_\+t $\ast$}]{client\+\_\+id,  }\item[{uint8\+\_\+t $\ast$}]{stream\+\_\+id }\end{DoxyParamCaption})}
+
+
+
+Setting the mandatory parameters to connect to Live\+Objects. 
+
+This function allows the user to define all the parameters essential to the connection of Live\+Objects 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$ \\
+\hline
+{\em server\+\_\+name} & Live\+Objects URL {\bfseries{16}} uint8\+\_\+t$\ast$ \\
+\hline
+{\em port} & MQTT port {\bfseries{16}} uint16\+\_\+t \\
+\hline
+{\em user\+\_\+name} & Connection mode (see enum\+\_\+mode) {\bfseries{16}} uint8\+\_\+t$\ast$ \\
+\hline
+{\em password} & A valid API key value (Tenant ID) {\bfseries{16}} uint8\+\_\+t$\ast$ \\
+\hline
+{\em client\+\_\+id} & The client\+Id value is used as MQTT client Id must be a valid Live Objects URN and conform to the following format\+: urn\+:lo\+:nsid\+:\{namespace\}\+:\{id\} {\bfseries{16}} uint8\+\_\+t$\ast$ \\
+\hline
+{\em stream\+\_\+id} & Data stream of the device {\bfseries{uint8\+\_\+t$\ast$}} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean value, true if everything is ok, false if there was a problem during the execution. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_a7ab42f9f88534dd58e5b9fa531b2c0ee}\label{mqtt__liveobjects_8h_a7ab42f9f88534dd58e5b9fa531b2c0ee}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_set\_config\_udp\_callback@{lo\_set\_config\_udp\_callback}}
+\index{lo\_set\_config\_udp\_callback@{lo\_set\_config\_udp\_callback}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_set\_config\_udp\_callback()}{lo\_set\_config\_udp\_callback()}}
+{\footnotesize\ttfamily void lo\+\_\+set\+\_\+config\+\_\+udp\+\_\+callback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$}]{handle,  }\item[{void($\ast$)(int64\+\_\+t cid, const char $\ast$req, const json\+\_\+value $\ast$arg)}]{lo\+\_\+publish\+\_\+response\+\_\+callback }\end{DoxyParamCaption})}
+
+
+
+Set the procedure config udp callback (no secure mode) 
+
+This function define the name of the callback which is called when an request is received 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$ \\
+\hline
+{\em Pointer} & of the callback procedure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_a74f48fff6186bf73f33b9c2a49506ae7}\label{mqtt__liveobjects_8h_a74f48fff6186bf73f33b9c2a49506ae7}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_set\_default\_config@{lo\_set\_default\_config}}
+\index{lo\_set\_default\_config@{lo\_set\_default\_config}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_set\_default\_config()}{lo\_set\_default\_config()}}
+{\footnotesize\ttfamily bool lo\+\_\+set\+\_\+default\+\_\+config (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+
+
+Setting the mandatory parameters to connect to Live\+Objects. 
+
+Set the default parameters defined in \mbox{\hyperlink{liveobjects__conf_8h_source}{liveobjects\+\_\+conf.\+h}} file 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$ \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean value, true if everything is ok, false if there was a problem during the execution. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_ad9cf86915f441f80fc2fa4b396578851}\label{mqtt__liveobjects_8h_ad9cf86915f441f80fc2fa4b396578851}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_set\_rsc\_udp\_callback@{lo\_set\_rsc\_udp\_callback}}
+\index{lo\_set\_rsc\_udp\_callback@{lo\_set\_rsc\_udp\_callback}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_set\_rsc\_udp\_callback()}{lo\_set\_rsc\_udp\_callback()}}
+{\footnotesize\ttfamily void lo\+\_\+set\+\_\+rsc\+\_\+udp\+\_\+callback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$}]{handle,  }\item[{void($\ast$)(int64\+\_\+t cid, const char $\ast$req, const json\+\_\+value $\ast$arg)}]{lo\+\_\+publish\+\_\+response\+\_\+callback }\end{DoxyParamCaption})}
+
+
+
+Set the procedure rsc udp callback (no secure mode) 
+
+This function define the name of the callback which is called when an request is received 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$ \\
+\hline
+{\em Pointer} & of the callback procedure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_ae7dc71df3395f402b943ad3879637684}\label{mqtt__liveobjects_8h_ae7dc71df3395f402b943ad3879637684}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_set\_subscribe\_callback@{lo\_set\_subscribe\_callback}}
+\index{lo\_set\_subscribe\_callback@{lo\_set\_subscribe\_callback}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_set\_subscribe\_callback()}{lo\_set\_subscribe\_callback()}}
+{\footnotesize\ttfamily void lo\+\_\+set\+\_\+subscribe\+\_\+callback (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$}]{handle,  }\item[{void($\ast$)(\mbox{\hyperlink{struct__mqtt__response__publish}{mqtt\+\_\+response\+\_\+publish}} $\ast$p\+\_\+published)}]{lo\+\_\+publish\+\_\+response\+\_\+callback }\end{DoxyParamCaption})}
+
+
+
+Set the procedure generic subscribe callback (no secure mode) 
+
+This function define the name of the callback which is called when an request is received 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$ \\
+\hline
+{\em Pointer} & of the callback procedure \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_a045500527f1765814d443a8537384580}\label{mqtt__liveobjects_8h_a045500527f1765814d443a8537384580}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_subscribe@{lo\_subscribe}}
+\index{lo\_subscribe@{lo\_subscribe}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_subscribe()}{lo\_subscribe()}}
+{\footnotesize\ttfamily void lo\+\_\+subscribe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$}]{handle,  }\item[{const uint8\+\_\+t $\ast$}]{topic }\end{DoxyParamCaption})}
+
+
+
+Subscribe topic. 
+
+This function subscribe a topic. This feature is useful if a new topic is offered by Live\+Objects and the software has not been updated. Otherwise, preferably use the lo\+\_\+xxx\+\_\+subscribe functions 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$ \\
+\hline
+{\em const} & uint8\+\_\+t$\ast$ Topic name. {\bfseries{16}} char$\ast$ \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_ac218ffe1468e3ab0e261c3a25f58fabd}\label{mqtt__liveobjects_8h_ac218ffe1468e3ab0e261c3a25f58fabd}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_synchronize@{lo\_synchronize}}
+\index{lo\_synchronize@{lo\_synchronize}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_synchronize()}{lo\_synchronize()}}
+{\footnotesize\ttfamily void lo\+\_\+synchronize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$}]{handle }\end{DoxyParamCaption})}
+
+
+
+Synchronize MQTT connection. 
+
+This function makes it possible to validate the MQTT connection and to send a keep alive if necessary and to report data reception events from the server 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$ \\
+\hline
+{\em cid} & CID send by receive command {\bfseries{16}} int64\+\_\+t \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{mqtt__liveobjects_8h_a384c6128a68458d350909d9c0d1d4602}\label{mqtt__liveobjects_8h_a384c6128a68458d350909d9c0d1d4602}} 
+\index{mqtt\_liveobjects.h@{mqtt\_liveobjects.h}!lo\_unsubscribe@{lo\_unsubscribe}}
+\index{lo\_unsubscribe@{lo\_unsubscribe}!mqtt\_liveobjects.h@{mqtt\_liveobjects.h}}
+\doxysubsubsection{\texorpdfstring{lo\_unsubscribe()}{lo\_unsubscribe()}}
+{\footnotesize\ttfamily void lo\+\_\+unsubscribe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct__handle__mqtt}{HANDLE\+\_\+\+MQTT}} $\ast$}]{handle,  }\item[{char $\ast$}]{topic }\end{DoxyParamCaption})}
+
+
+
+Unsubscribe topic. 
+
+This function unsubscribe a topic. This feature is useful if a new topic is offered by Live\+Objects and the software has not been updated. Otherwise, preferably use the lo\+\_\+xxx\+\_\+unsubscribe functions 
+\begin{DoxyParams}{Parameters}
+{\em handle} & Instance of the Live\+Objects connection {\bfseries{16}} HANDLE\+\_\+\+MQTT$\ast$ \\
+\hline
+{\em char$\ast$} & Topic name. {\bfseries{16}} char$\ast$ \\
+\hline
+\end{DoxyParams}
